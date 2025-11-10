@@ -1,0 +1,40 @@
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
+
+public class PipeSpawner : MonoBehaviour
+{
+    [SerializeField] float maxTime = 1.5f;
+    [SerializeField] float heightRange = 0.5f;
+    [SerializeField] GameObject pipePrefab;     //파이프 프리펩 연결
+    float timer;
+
+    void Update()
+    {
+        //timer 가 maxTime 을 넘으면
+        if (timer > maxTime)
+        {
+            SpawnPipe();
+
+            //pipe 만드는 함수 호출
+            timer = 0;
+            //timer 는 0으로
+        }
+        timer += Time.deltaTime;
+        //timer 에 deltaTime 더해주기
+    }
+    
+    void SpawnPipe()
+    {
+        //랜덤으로 y값을 정해서, 생성될 파이프의 위치 정하기
+        Vector3 spawnPos = transform.position + new Vector3(0, Random.Range(-heightRange, heightRange));
+
+        //instantiate 로 생성, 생성된 객체는 pipe 라는 GameObject 에 할당
+        GameObject pipe = Instantiate(pipePrefab, spawnPos, Quaternion.identity);
+
+        //5초뒤 pipe 객체 파괴
+        Destroy(pipe, 5.0f);
+
+    }
+}

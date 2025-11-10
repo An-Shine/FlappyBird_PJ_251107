@@ -25,6 +25,11 @@ public class BirdControl : MonoBehaviour
     void FixedUpdate()
     {
         //update 에서 변경된 velocity.y 값 만큼만 회전
-        transform.rotation = Quaternion.Euler(0,0,rb.velocity.y*rotationSpeed);
+        transform.rotation = Quaternion.Euler(0, 0, rb.velocity.y * rotationSpeed);
     }
+    void OnCollisionEnter2D(Collision2D collision) 
+    {
+        GameManager.Instance.GameOver();
+    }
+    
 }
