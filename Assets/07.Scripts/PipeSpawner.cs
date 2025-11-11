@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class PipeSpawner : MonoBehaviour
 {
-    [SerializeField] float maxTime = 1.5f;
-    [SerializeField] float heightRange = 0.5f;
+    [SerializeField] float maxTime = 1.5f;      //생성주기
+    [SerializeField] float heightRange = 0.5f;  //생성위치y의 랜덤 범위
     [SerializeField] GameObject pipePrefab;     //파이프 프리펩 연결
+    [SerializeField] GameObject redpipePrefab;  //빨간 파이프 프리펩
+
     float timer;
 
     void Update()
@@ -27,11 +29,13 @@ public class PipeSpawner : MonoBehaviour
     
     void SpawnPipe()
     {
+        //랜덤으로 녹색인지 빨간색인지 파이프 선택
+        GameObject colorpipe = (Random.Range(0,100)> 10) ? pipePrefab : redpipePrefab;
         //랜덤으로 y값을 정해서, 생성될 파이프의 위치 정하기
         Vector3 spawnPos = transform.position + new Vector3(0, Random.Range(-heightRange, heightRange));
 
         //instantiate 로 생성, 생성된 객체는 pipe 라는 GameObject 에 할당
-        GameObject pipe = Instantiate(pipePrefab, spawnPos, Quaternion.identity);
+        GameObject pipe = Instantiate(colorpipe, spawnPos, Quaternion.identity);
 
         //5초뒤 pipe 객체 파괴
         Destroy(pipe, 5.0f);

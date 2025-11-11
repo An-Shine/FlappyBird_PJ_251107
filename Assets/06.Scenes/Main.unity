@@ -272,6 +272,7 @@ MonoBehaviour:
   maxTime: 1.5
   heightRange: 0.5
   pipePrefab: {fileID: 5011146893545669614, guid: 3cbf903df46fbd149aa8e5cb75ae6b39, type: 3}
+  redpipePrefab: {fileID: 5011146893545669614, guid: a81516d10278ac846a4a5f7e2bdf2972, type: 3}
 --- !u!4 &124481760
 Transform:
   m_ObjectHideFlags: 0
@@ -441,7 +442,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 799958361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0537, y: -0.0062, z: 0}
+  m_LocalPosition: {x: 0.0537, y: 0, z: 0}
   m_LocalScale: {x: 1.0664096, y: 1.0001333, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -458,7 +459,7 @@ Animator:
   m_GameObject: {fileID: 799958361}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2f296a583c05e844cb62ef8d65eaf3ea, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
