@@ -14,6 +14,9 @@ public class PipeSpawner : MonoBehaviour
 
     void Update()
     {
+        //게임상태가 PLAY 일때만 파이프를 생성
+        if (GameManager.Instance.GameState != GameManager.State.PLAY) return;      
+                    
         //timer 가 maxTime 을 넘으면
         if (timer > maxTime)
         {
