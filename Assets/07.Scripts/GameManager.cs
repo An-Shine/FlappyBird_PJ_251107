@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] SpriteRenderer background;
     [SerializeField] Sprite[] bgSprite;
     [SerializeField] Animator floorAnim;
+    [SerializeField] BirdControl bird;
+    [SerializeField] GameObject[] stateUi;
+    [SerializeField] GameObject restartButton;
 
 
     State gameState;        //게임상태를 저장할 변수
@@ -59,11 +62,14 @@ public class GameManager : MonoBehaviour
     public void GameReady()
     {
         ChangeState(State.READY);
+        //새 이동 
+        bird.BirdReady();
     }
 
     public void GamePlay()
     {
         ChangeState(State.PLAY);
+        bird.OffBirdAnimator();
     }
 
     public void GameBestScore() => ChangeState(State.BESTSCORE);
@@ -76,7 +82,19 @@ public class GameManager : MonoBehaviour
         //Time.timeScale = 0f;
         //바닥애니메이션을 멈춘다
         floorAnim.enabled = false;
-        
+        restartButton.SetActive(false);
+        //코루틴을 이용해서 잠시 시간을 지연시킨다
+        StartCoroutine(StopTimer());
+    }
+
+    IEnumerator StopTimer()
+    {
+        //2초 기다렸다가 다음로직 실행
+        yield return new WaitForSeconds(2.0f);
+        //게임시간을 멈춘다
+        Time.timeScale = 0;
+        //restart 버튼 보이게
+        restartButton.SetActive(true);
     }
      //현재 씬을 다시 불러오기
     public void RestartGame() =>SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);    
