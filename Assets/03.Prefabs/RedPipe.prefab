@@ -160,6 +160,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.6
+  upPipe: {fileID: 5011146894668254148}
+  downPipe: {fileID: 5011146893209653929}
 --- !u!114 &4567184851234451741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreValue: 5
+  acPoint: {fileID: 8300000, guid: 930ce3e77d81f3a49bdf44be17bd7f69, type: 3}
 --- !u!61 &1264282917720672276
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -9,6 +9,10 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] TMP_Text scoreText;
 
     int score = 0;
+    int rank = 0;
+
+    public int Score => score;
+    public int Rank => rank;
     void Awake()
     {
         if (Instance == null) Instance = this;

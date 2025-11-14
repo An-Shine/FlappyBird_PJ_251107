@@ -25,11 +25,15 @@ public class GameManager : MonoBehaviour
     [SerializeField] Animator floorAnim;
     [SerializeField] BirdControl bird;
     [SerializeField] GameObject[] stateUi;
-    [SerializeField] GameObject restartButton;
+    [SerializeField] GameObject restartButton;    
+    [SerializeField] AudioClip acReady;
+    [SerializeField] AudioClip acHit;
 
 
     State gameState;        //게임상태를 저장할 변수
     public State GameState => gameState;
+
+    new AudioSource audio;
 
     //싱글턴
     void Awake()
@@ -39,9 +43,12 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         Time.timeScale = 1.0f;      //정상적인 게임의 시간의 흐르게
         GameTitle();                //시작은 타이틀에서
     }
+    public void PlayAudio(AudioClip clip) => audio.PlayOneShot(clip);
+
     void ChangeState(State value)
     {
         gameState = value;
@@ -61,9 +68,12 @@ public class GameManager : MonoBehaviour
 
     public void GameReady()
     {
+        
         ChangeState(State.READY);
         //새 이동 
         bird.BirdReady();
+        //Ready 소리
+        PlayAudio(acReady);
     }
 
     public void GamePlay()
@@ -77,6 +87,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        //충돌소리
+        //PlayAudio(acHit);
         ChangeState(State.GAMEOVER);
         //게임 시간을 멈춘다
         //Time.timeScale = 0f;
@@ -85,6 +97,7 @@ public class GameManager : MonoBehaviour
         restartButton.SetActive(false);
         //코루틴을 이용해서 잠시 시간을 지연시킨다
         StartCoroutine(StopTimer());
+        
     }
 
     IEnumerator StopTimer()

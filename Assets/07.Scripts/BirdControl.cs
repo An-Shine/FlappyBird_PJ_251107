@@ -9,8 +9,13 @@ public class BirdControl : MonoBehaviour
     [SerializeField] float rotationSpeed = 10.0f;
     [SerializeField] Animator flapAnim;
     [SerializeField] Animator birdAnim;
+    [SerializeField] AudioClip acWing;
+    [SerializeField] AudioClip acDie;
+    [SerializeField] float hitHeight = 0.8f;
+    
     Rigidbody2D rb;
     GameManager gmi;
+    
     
     void Start()
     {
@@ -37,6 +42,8 @@ public class BirdControl : MonoBehaviour
             {
                 
                 rb.velocity = Vector2.up * velocity;
+                // 새가 날아가는 소리
+                gmi.PlayAudio(acWing);
             }
            
         }
@@ -52,11 +59,18 @@ public class BirdControl : MonoBehaviour
         //게임 PLAY 일때만 충돌 감지
         if (gmi.GameState != GMState.PLAY) return;
 
-        gmi.GameOver();
+        gmi.GameOver();    
 
         //새의 Flap 애니메이션을 멈춘다
         //GetComponent<Animator>().enabled = false;
         flapAnim.enabled = false;
+
+        //새의 y좌표에 따라 소리 재생
+        if(transform.position.y > hitHeight)
+        {
+            gmi.PlayAudio(acDie);
+        }
+        
     }
 
     public void BirdReady()
