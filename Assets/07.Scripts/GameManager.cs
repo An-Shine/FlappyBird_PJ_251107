@@ -108,8 +108,9 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         //restart 버튼 보이게
         restartButton.SetActive(true);
-    }
+    }    
      //현재 씬을 다시 불러오기
+
     public void RestartGame() =>SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);    
 
 }
