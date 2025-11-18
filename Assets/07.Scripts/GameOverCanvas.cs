@@ -15,7 +15,7 @@ public class GameOverCanvas : MonoBehaviour
     // Update is called once per frame
     public void UpdateResult()
     {
-        //3등 안이염ㄴ
+        //3등 안이면
         if(ScoreManager.Instance.Rank < 3)
         {
         //메달 표시

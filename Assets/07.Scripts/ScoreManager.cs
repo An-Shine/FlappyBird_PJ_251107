@@ -63,7 +63,7 @@ public class ScoreManager : MonoBehaviour
         {
             //1~5등 까지 값을저장
             PlayerPrefs.SetString($"RANKDATE{index}", item.Key);
-            PlayerPrefs.SetInt($"RANKDATE{index}", item.Value);
+            PlayerPrefs.SetInt($"RANKSCORE{index}", item.Value);
 
             //현재 item이 nowKey값과 같으면 그 때 인덱스가 랭크값
             if(item.Key.Equals(nowKey))
